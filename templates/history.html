@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head"><span class="eyebrow">RECOMMENDATION HISTORY</span><h1>Your past plans</h1><p>Review previous queries and generated results.</p></section>
+<div class="panel">
+{% if history %}
+{% for h in history %}
+<details class="history-item"><summary><b>{{ h.planner|title }} Planner</b><span>{{ h.created_at }}</span></summary><pre>{{ h.result_json }}</pre></details>
+{% endfor %}
+{% else %}<p>No saved recommendations yet.</p>{% endif %}
+</div>
+{% endblock %}
