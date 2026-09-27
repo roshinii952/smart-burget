@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head"><span class="eyebrow">USER DASHBOARD</span><h1>Hello, {{ user.name }} 👋</h1><p>Choose a planner or review your recent recommendations.</p></section>
+<div class="cards">
+<a class="feature" href="/home"><b>🏠 Home Interior</b><p>Start a home budget plan.</p></a>
+<a class="feature" href="/party"><b>🎉 Party Planner</b><p>Plan food, venue and decor.</p></a>
+<a class="feature" href="/jewelry"><b>💎 Jewelry Planner</b><p>Match jewelry to your occasion.</p></a>
+</div>
+<section class="panel"><h2>Recent recommendations</h2>
+{% if recent %}<ul class="history">{% for r in recent %}<li><b>{{ r.planner|title }}</b><span>{{ r.created_at }}</span></li>{% endfor %}</ul>
+{% else %}<p>No recommendations yet.</p>{% endif %}
+<a href="/history">View full history →</a></section>
+{% endblock %}
