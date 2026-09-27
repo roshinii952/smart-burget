@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head"><span class="eyebrow">AI RECOMMENDATIONS</span><h1>{{ result.title }}</h1><p>{{ result.summary }}</p></section>
+<div class="recommend-grid">
+<section class="panel"><h2>Budget allocation</h2>
+{% for name, amount in result.allocation.items() %}
+<div class="allocation"><span>{{ name }}</span><b>₹{{ "{:,.0f}".format(amount|float) }}</b></div>
+{% endfor %}
+</section>
+<section class="panel"><h2>Recommended options</h2>
+<div class="results">
+{% for item in result.recommendations %}
+<article class="result"><h3>{{ item.name }}</h3><span class="tag">{{ item.platform }}</span><strong>{{ item.price }}</strong><p>{{ item.reason }}</p></article>
+{% endfor %}
+</div></section>
+</div>
+<div class="actions"><a class="btn" href="/{{ planner }}">Plan again</a>{% if user %}<a class="btn secondary" href="/history">View history</a>{% endif %}</div>
+<p class="note">Note: platform names are recommendation sources; prices and availability should be checked on the platform before purchase.</p>
+{% endblock %}
