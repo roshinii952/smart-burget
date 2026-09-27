@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+<span class="eyebrow">POCKETSMART AI</span>
+{% if planner == "home" %}<h1>Home Interior Budget Planner</h1><p>Tell us your room and quantities; we'll allocate your budget.</p>
+{% elif planner == "party" %}<h1>Party Budget Planner</h1><p>Plan food, venue, decoration and entertainment without guesswork.</p>
+{% else %}<h1>Jewelry Budget Planner</h1><p>Get occasion and style matched jewelry suggestions.</p>{% endif %}
+</section>
+<div class="panel">
+{% if planner == "home" %}
+<form method="post" action="/generate-home" class="form grid2">
+<label>Total budget (₹)<input type="number" name="budget" min="1" required></label>
+<label>Room type<select name="room_type"><option>Living Room</option><option>Kitchen</option><option>Bedroom</option><option>Dining Room</option></select></label>
+<label>Lights<input type="number" name="lights" min="0" value="2"></label>
+<label>Ceiling fans<input type="number" name="fans" min="0" value="1"></label>
+<label>Dining / accent tables<input type="number" name="tables" min="0" value="1"></label>
+<label>Style<select name="style"><option>Modern</option><option>Minimal</option><option>Traditional</option><option>Luxury</option></select></label>
+<button class="btn">Generate Recommendations ✦</button>
+</form>
+{% elif planner == "party" %}
+<form method="post" action="/generate-party" class="form grid2">
+<label>Total budget (₹)<input type="number" name="budget" min="1" required></label>
+<label>Guest count<input type="number" name="guests" min="1" required></label>
+<label>Event type<select name="event_type"><option>Birthday</option><option>Corporate</option><option>Wedding</option><option>Anniversary</option><option>Other</option></select></label>
+<label>Venue<select name="venue"><option>Indoor</option><option>Outdoor</option><option>Hotel</option><option>Home</option></select></label>
+<button class="btn">Generate Recommendations ✦</button>
+</form>
+{% else %}
+<form method="post" action="/generate-jewelry" enctype="multipart/form-data" class="form">
+<label>Total budget (₹)<input type="number" name="budget" min="1" required></label>
+<label>Occasion<select name="occasion"><option>Wedding</option><option>Party</option><option>Office</option><option>Festival</option><option>Date</option></select></label>
+<label>Style<select name="style"><option>Classic</option><option>Minimal</option><option>Traditional</option><option>Modern</option><option>Statement</option></select></label>
+<label>Optional outfit image<input type="file" name="outfit_image" accept="image/*"></label>
+<button class="btn">Generate Recommendations ✦</button>
+</form>
+{% endif %}
+</div>
+{% endblock %}
