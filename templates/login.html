@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth"><h1>Welcome back</h1><p>Login to access your dashboard and history.</p>
+{% if error %}<div class="error">{{ error }}</div>{% endif %}
+<form method="post" action="/login" class="form">
+<label>Email<input type="email" name="email" required></label>
+<label>Password<input type="password" name="password" required></label>
+<button class="btn">Login</button>
+</form><p>New here? <a href="/register">Create an account</a></p></div>
+{% endblock %}
